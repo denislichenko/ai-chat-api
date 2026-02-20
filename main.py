@@ -1,4 +1,6 @@
 from http.client import HTTPException
+from typing import Optional
+
 from fastapi import FastAPI
 from fastapi.params import Depends
 from pydantic import BaseModel
@@ -9,7 +11,9 @@ app = FastAPI()
 
 
 class ChatRequest(BaseModel):
+    user_id: str
     message: str
+    conversation_id: Optional[str] = None
 
 class ChatResponse(BaseModel):
     answer: str
@@ -20,7 +24,10 @@ async def chat(
     request: ChatRequest,
     chat_service: ChatService = Depends(get_chat_service)):
     try:
-        result = await chat_service.handle_chat(request.message)
+        result = await chat_service.handle_chat(
+            request.user_id,
+            request.conversation_id,
+            request.message)
         return ChatResponse(
             answer=result["content"],
             tokens_used=result["usage"]
