@@ -1,0 +1,10 @@
+fastapi==0.128.8
+httpx==0.28.1
+pydantic==2.12.5
+pydantic_settings==2.11.0
+qdrant_client==1.16.1
+sentence_transformers==2.5.1
+SQLAlchemy==2.0.25
+uvicorn[standard]==0.30.0
+psycopg2-binary==2.9.9
+python-multipart==0.0.9

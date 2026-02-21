@@ -4,7 +4,6 @@ from core.config import settings
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-
 class LLMService:
     def __init__(self):
         self.api_key = settings.OPENROUTER_API_KEY
